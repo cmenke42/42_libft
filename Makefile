@@ -6,15 +6,14 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 09:41:00 by cmenke            #+#    #+#              #
-#    Updated: 2022/12/30 14:27:54 by cmenke           ###   ########.fr        #
+#    Updated: 2023/03/02 15:09:43 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #ar -r ->replace exising files or create a new one if. 
 #ar -c -> silence the information message.
 #ar -s -> adds or updates an onject-file index to the archive.
-#bonus depends on OBJS and OBJSBONUS and create a new libft.a,
-#since its a bonus its not directly depending on name
+
 NAME = libft.a
 
 SRC = ft_isalpha.c \
@@ -50,21 +49,20 @@ SRC = ft_isalpha.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_fd.c
+	ft_putnbr_fd.c \
+	ft_lstnew.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstdelone.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstmap.c \
+	ft_printf.c \
+	get_next_line_bonus.c
 
 OBJS = ${SRC:.c=.o}
-
-SRCBONUS = ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c
-
-OBJSBONUS = ${SRCBONUS:.c=.o}
 
 CC = cc
 
@@ -79,14 +77,11 @@ $(OBJS):
 	$(CC) -c $(CFLAGS) ${SRC}
 
 clean:
-	rm -f ${OBJS} ${OBJSBONUS}
+	rm -f ${OBJS}
 
 fclean:	clean
 	rm -f ${NAME}
 
 re: fclean all
 
-bonus: $(OBJS) ${OBJSBONUS}
-	ar -rc ${NAME} ${OBJS} ${OBJSBONUS}
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
