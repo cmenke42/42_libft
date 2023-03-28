@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 09:41:00 by cmenke            #+#    #+#              #
-#    Updated: 2023/03/02 15:09:43 by cmenke           ###   ########.fr        #
+#    Updated: 2023/03/28 14:26:39 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ SRC = ft_isalpha.c \
 
 OBJS = ${SRC:.c=.o}
 
+HEADER = libft.h
+
 CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
@@ -73,8 +75,7 @@ all :	${NAME}
 ${NAME}: ${OBJS}
 	ar -rc ${NAME} ${OBJS}
 
-$(OBJS):
-	$(CC) -c $(CFLAGS) ${SRC}
+$(OBJS): ${HEADER}
 
 clean:
 	rm -f ${OBJS}
