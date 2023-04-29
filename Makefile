@@ -14,9 +14,9 @@
 #ar -c -> silence the information message.
 #ar -s -> adds or updates an onject-file index to the archive.
 
-NAME = libft.a
+NAME := libft.a
 
-SRC = ft_isalpha.c \
+SRC := ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
 	ft_isascii.c \
@@ -62,13 +62,13 @@ SRC = ft_isalpha.c \
 	ft_printf.c \
 	get_next_line_bonus.c
 
-OBJS = ${SRC:.c=.o}
+OBJS := ${SRC:.c=.o}
 
-HEADER = libft.h
+HEADER := libft.h
 
-CC = cc
+CC := cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra
 
 all :	${NAME}
 
