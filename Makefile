@@ -33,9 +33,17 @@ OBJS := $(patsubst %.c, ${OBJ_DIR}/%.o, ${SRCS})
 DEPS := $(patsubst %.c, ${DEPENDENCY_DIR}/%.d, ${SRCS})
 
 # Production flags
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-# Development flags
+## Development flags
+
+# -MMD: Generate dependency file without system header files
+# -MP: Create an empty rule for each header file mentioned in the dependency file,
+#      avoids make errors if a header file is deleted
+# -MF: Specify the output file name for the dependency file
+# $*: Stem of the target, the % part of the pattern rule
+
+# CFLAGS += -MMD -MP -MF ${DEPENDENCY_DIR}/$*.d
 # CFLAGS += -g -O0
 # CFLAGS += -fsanitize=undefined
 # CFLAGS += -fsanitize=address
@@ -50,14 +58,9 @@ all : ${NAME}
 ${NAME}: ${OBJS}
 	${AR} ${NAME} $?
 
-# -MMD -> Generate dependency file without system header files
-# -MF -> Specify the output file name for the dependency file
-# -MP -> empty rule for each header file mentioned in the dependency file,
-#		 avoids make errors if header file is deleted
-# $* -> stem of the target, the % part of the pattern rule
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c | ${OBJ_DIR} ${DEPENDENCY_DIR}
 	mkdir -p $(dir $@)
-	${CC} ${CFLAGS} -c $< -o $@ -MMD -MP -MF ${DEPENDENCY_DIR}/$*.d
+	${CC} ${CFLAGS} -c $< -o $@
 
 ${OBJ_DIR}:
 	mkdir -p ${OBJ_DIR}
