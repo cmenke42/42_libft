@@ -1,61 +1,115 @@
-# 42_libft 💻
+# 📚 42_libft
 
-Welcome to **42_libft**, a C library recoded in a 42 Way, featuring standard C functions and additional data manipulation functions.
+A library that includes some standard C functions recoded in the 42 style, along with linked list helpers and additional utility functions
+like `ft_printf` and `ft_get_next_line`.
 
-## 🧐 Character Checks
-- `ft_isalpha`: is alphabetic?
-- `ft_isdigit`: is a digit?
-- `ft_isalnum`: is alphanumeric?
-- `ft_isascii`: is within the ASCII range?
-- `ft_isprint`: is printable?
-
-## 📜 String Manipulation
-- `ft_strchr`: Locate the first occurrence of a character in a string.
-- `ft_strrchr`: Locate the last occurrence of a character in a string.
-- `ft_strncmp`: Compare two strings up to a specified number of characters.
-- `ft_strnstr`: Locate a substring within a string, with a length limit.
-- `ft_strlcpy`: Copy strings with a specified size.
-- `ft_strlcat`: Concatenate strings with a specified size.
-- `ft_substr`: Create a substring from a string.
-- `ft_strjoin`: Concatenate two strings.
-- `ft_strtrim`: Trim a set of characters from the beginning and end of a string.
-- `ft_split`: Split a string into an array of substrings.
-- `ft_strmapi`: Apply a function to each character of a string.
-- `ft_striteri`: Iterate through a string while accessing its index.
-- `ft_strdup`: Duplicate a string.
-- `ft_itoa`: Convert an integer to a string.
-- `ft_atoi`: Convert a string to an integer.
-
-## 🧠 Memory Operations
-- `ft_memset`: Fill memory with a constant byte.
-- `ft_bzero`: Set a block of memory to zero.
-- `ft_memcpy`: Copy memory from source to destination.
-- `ft_memmove`: Move memory from source to destination, even if they overlap.
-- `ft_memchr`: Locate the first occurrence of a character in memory.
-- `ft_memcmp`: Compare two memory areas.
-- `ft_calloc`: Allocate memory with initialization to zero.
-
-## 🔗 Linked Lists
-- `ft_lstnew`: Create a new node.
-- `ft_lstadd_front`: Add a new node at the beginning.
-- `ft_lstsize`: Get the size of a linked list.
-- `ft_lstlast`: Get the last node of a linked list.
-- `ft_lstadd_back`: Add a new node at the end.
-- `ft_lstdelone`: Delete a node.
-- `ft_lstclear`: Clear the entire linked list.
-- `ft_lstiter`: Apply a function to each node of a linked list.
-- `ft_lstmap`: Create a new linked list by applying a function to each node.
-
-## 🖨️ Printing
-- `ft_putchar_fd`: Write a character to a file descriptor.
-- `ft_putstr_fd`: Write a string to a file descriptor.
-- `ft_putendl_fd`: Write a string followed by a newline to a file descriptor.
-- `ft_putnbr_fd`: Write an integer to a file descriptor.
-
-## ✨ Function Naming
-
-Every function in this library starts with `ft_`, making it easy to identify and use within your C projects.
+## 📖 Table of Contents
+- [🚀 Getting Started](#-getting-started)
+- [Function Overview](#function-overview) 
+    - [🧐 Character Checks](#-character-checks)
+    - [📜 String Manipulation](#-string-manipulation)
+    - [🔢 Number Conversion](#-number-conversion)
+    - [🧠 Memory Operations](#-memory-operations)
+    - [🔗 Linked List Operations](#-linked-list-operations)
+    - [📝 File Descriptor Input](#-file-descriptor-input)
+    - [📝 File Descriptor Output](#-file-descriptor-output)
+    - [🖨️ Printing](#️-printing)
+- [🏷️ Function Naming](#️-function-naming)
 
 ## 🚀 Getting Started
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/cmenke42/42_libft.git
+    ```
+2. Build the library:
+    ```sh
+    make -C 42_libft
+    ```
+3. Include the library in your project by adding the include path and linking against `libft.a`:
+    ```sh
+    cc -I 42_libft/includes -o target main.c -L42_libft -lft
+    ```
 
-To use **42_libft**, simply include the library in your C project.
+    <details>
+    <summary>Explanation of the command</summary>
+
+    - `cc`: Invokes the C compiler.
+    - `-I 42_libft/includes`: Adds the `42_libft/includes` directory to the list of directories to search for header files.
+    - `-L42_libft`: Adds the `42_libft` directory to the list of directories to search for libraries.
+    - `-lft`: Searches for a library named `libft.a` when linking. The `lib` prefix and `.a` extension are added automatically.
+    - `-o target`: Specifies the output executable name as `target`.
+    - `source.c`: The source file to compile.
+
+    </details>
+
+    This command assumes a project structure like this:
+    ```text
+    project_root/
+    ├── 42_libft/
+    │   ├── includes/
+    │   │   └── libft.h
+    │   ├── libft.a
+    │   ├── Makefile
+    │   ├── README.md
+    │   └── src/
+    │       └── [ft_atoi.c, ...]
+    └── main.c
+    ```
+
+## Function Overview
+
+### 🧐 Character Checks
+- `ft_isdigit`: Check if a character is a digit.
+- `ft_isalpha`: Check if a character is alphabetic.
+- `ft_isalnum`: Check if a character is alphanumeric.
+- `ft_isascii`: Check if a character is within the ASCII range.
+- `ft_isprint`: Check if a character is printable.
+- `ft_tolower`: Convert a character to lowercase.
+- `ft_toupper`: Convert a character to uppercase.
+
+### 📜 String Manipulation
+- `ft_strncmp`: Compare two strings up to n characters.
+- `ft_strchr`, `ft_strrchr`: Locate character in string (first/last occurrence).
+- `ft_strnstr`: Locate a substring in a string, length-limited.
+- `ft_strlcpy`, `ft_strlcat`: Copy/concatenate strings with size limitation.
+- `ft_strjoin`: Concatenate two strings.
+- `ft_substr`: Extract substring from string.
+- `ft_split`: Split string into array of substrings.
+- `ft_strdup`: Duplicate a string.
+- `ft_strlen`: Get string length.
+- `ft_strtrim`: Trim characters from string ends.
+- `ft_strmapi`, `ft_striteri`: Apply function to string characters (in-place/new string).
+
+### 🔢 Number Conversion
+- `ft_itoa`: Convert integer to string.
+- `ft_atoi`: Convert string to integer.
+
+### 🧠 Memory Operations
+- `ft_memset`, `ft_bzero`: Set memory to specific value/zero.
+- `ft_memcpy`, `ft_memmove`: Copy memory (non-overlapping/safe).
+- `ft_memchr`: Find byte in memory.
+- `ft_memcmp`: Compare memory areas.
+- `ft_calloc`: Allocate and zero-initialize memory.
+
+### 🔗 Linked List Operations
+- `ft_lstnew`: Create new list node.
+- `ft_lstadd_front`, `ft_lstadd_back`: Add node to list start/end.
+- `ft_lstsize`: Count list nodes.
+- `ft_lstlast`: Get last list node.
+- `ft_lstiter`, `ft_lstmap`: Apply function to list nodes (in-place/new list).
+- `ft_lstdelone`, `ft_lstclear`: Delete one/all list node(s).
+
+### 📝 File Descriptor Input
+- `ft_get_next_line`: Read a line from a file descriptor.
+
+### 📝 File Descriptor Output
+- `ft_putnbr_fd`: Write integer to file descriptor.
+- `ft_putchar_fd`: Write character to file descriptor.
+- `ft_putstr_fd`, `ft_putendl_fd`: Write string to file descriptor (with/without newline).
+
+### 🖨️ Printing
+- `ft_printf`: Custom limited implementation of the `printf` function. 
+
+### 🏷️ Function Naming
+- Functions are prefixed with `ft_` to indicate they are part of the libft library.
+- The naming convention follows the pattern `ft_<functionality>`.
